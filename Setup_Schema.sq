@@ -1,0 +1,36 @@
+-- Create Authors table
+CREATE TABLE Authors (
+    AuthorID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Country VARCHAR(50)
+);
+
+-- Create Books table
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(200) NOT NULL,
+    AuthorID INT,
+    Publisher VARCHAR(100),
+    YearPublished INT,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+);
+
+-- Create Students table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15)
+);
+
+-- Create IssuedBooks table
+
+CREATE TABLE IssuedBooks (
+    IssueID INT PRIMARY KEY AUTO_INCREMENT,
+    BookID INT,
+    StudentID INT,
+    IssueDate DATE,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
